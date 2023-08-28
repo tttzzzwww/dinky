@@ -330,7 +330,10 @@ public abstract class AbstractSinkBuilder implements SinkBuilder {
             final DecimalType decimalType = ((DecimalType) logicalType);
             final int precision = decimalType.getPrecision();
             final int scale = decimalType.getScale();
-            return DecimalData.fromBigDecimal(new BigDecimal((String) value), precision, scale);
+            // 修改见
+            // https://github.com/DataLinkDC/dinky/pull/1864/files#diff-265bb6876d600c02525b4778f949f5f6e607576597415f604cb2387d910d4373
+            return DecimalData.fromBigDecimal(
+                    new BigDecimal(String.valueOf(value)), precision, scale);
         } else if (logicalType instanceof FloatType) {
             if (value instanceof Float) {
                 return value;

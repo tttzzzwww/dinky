@@ -21,6 +21,9 @@ package com.dlink.cdc;
 
 import com.dlink.assertion.Asserts;
 import com.dlink.cdc.mysql.MysqlCDCBuilder;
+import com.dlink.cdc.oracle.OracleCDCBuilder;
+import com.dlink.cdc.postgres.PostgresCDCBuilder;
+import com.dlink.cdc.sqlserver.SqlServerCDCBuilder;
 import com.dlink.exception.FlinkClientException;
 import com.dlink.model.FlinkCDCConfig;
 
@@ -37,8 +40,12 @@ import java.util.function.Supplier;
 public class CDCBuilderFactory {
 
     private static final Map<String, Supplier<CDCBuilder>> CDC_BUILDER_MAP = new HashMap<String, Supplier<CDCBuilder>>() {
+
         {
             put(MysqlCDCBuilder.KEY_WORD, () -> new MysqlCDCBuilder());
+            put(OracleCDCBuilder.KEY_WORD, () -> new OracleCDCBuilder());
+            put(PostgresCDCBuilder.KEY_WORD, () -> new PostgresCDCBuilder());
+            put(SqlServerCDCBuilder.KEY_WORD, () -> new SqlServerCDCBuilder());
         }
     };
 

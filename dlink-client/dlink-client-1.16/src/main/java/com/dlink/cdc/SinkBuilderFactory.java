@@ -41,9 +41,9 @@ public class SinkBuilderFactory {
     private static final Map<String, Supplier<SinkBuilder>> SINK_BUILDER_MAP = new HashMap<String, Supplier<SinkBuilder>>() {
 
         {
+            put(KafkaSinkBuilder.KEY_WORD, () -> new KafkaSinkBuilder());
             put(SQLSinkBuilder.KEY_WORD, () -> new SQLSinkBuilder());
             put(SQLCatalogSinkBuilder.KEY_WORD, () -> new SQLCatalogSinkBuilder());
-            put(KafkaSinkBuilder.KEY_WORD, () -> new KafkaSinkBuilder());
         }
     };
 

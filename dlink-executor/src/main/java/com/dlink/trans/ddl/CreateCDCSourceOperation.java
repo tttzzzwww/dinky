@@ -136,10 +136,10 @@ public class CreateCDCSourceOperation extends AbstractOperation implements Opera
                     if (!allConfigMap.containsKey(schemaName)) {
                         continue;
                     }
-
                     Driver sinkDriver = checkAndCreateSinkSchema(config, schemaName);
 
                     DriverConfig driverConfig = DriverConfig.build(allConfigMap.get(schemaName));
+
                     Driver driver = Driver.buildNewConnection(driverConfig);
                     final List<Table> tables = driver.listTables(schemaName);
                     for (Table table : tables) {
@@ -175,7 +175,6 @@ public class CreateCDCSourceOperation extends AbstractOperation implements Opera
                     driver.close();
                 }
             }
-
             logger.info("A total of " + schemaTableNameList.size() + " tables were detected...");
             for (int i = 0; i < schemaTableNameList.size(); i++) {
                 logger.info((i + 1) + ": " + schemaTableNameList.get(i));
